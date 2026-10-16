@@ -1,0 +1,9 @@
+{
+  "name": "SaveProtectSimple",
+  "version_number": "1.1.4",
+  "website_url": "",
+  "description": "已支持至 REPO v0.4.4 版本,mod问题交流QQ群573485890，轻量存档保护工具。防删档、解除保存存档上限、退出房间时自动备份。仅房主或单人安装即可。",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2100"
+  ]
+}
