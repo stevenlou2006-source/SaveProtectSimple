@@ -55,3 +55,13 @@ A：和普通存档在同一个目录（`saves/`），文件名以 `REPO_SAVE_AU
 ## 模块问题交流
 
 QQ群：573485890
+
+---
+
+## 许可证
+
+本项目以 **GNU General Public License v3.0** 发布。
+
+Copyright (C) 2026 cn_xc
+
+完整条款见仓库根目录 [LICENSE](LICENSE)。
