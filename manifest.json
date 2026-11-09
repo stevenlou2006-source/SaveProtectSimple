@@ -1,6 +1,6 @@
 {
   "name": "SaveProtectSimple",
-  "version_number": "1.1.4",
+  "version_number": "1.1.5",
   "website_url": "",
   "description": "已支持至 REPO v0.4.4 版本,mod问题交流腾讯频道 #pd77525911，轻量存档保护工具。防删档、解除保存存档上限、退出房间时自动备份。仅房主或单人安装即可。",
   "dependencies": [

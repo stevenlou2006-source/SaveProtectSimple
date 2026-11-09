@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -6,7 +6,7 @@ using HarmonyLib;
 
 namespace cn_xc.SaveProtectSimple
 {
-	[BepInPlugin("cn_xc.SaveProtectSimple", "Save Protect Simple", "1.1.0")]
+	[BepInPlugin("cn_xc.SaveProtectSimple", "Save Protect Simple", "1.1.5")]
 	public class SaveProtectSimplePlugin : BaseUnityPlugin
 	{
 		internal static ManualLogSource Log;
@@ -23,11 +23,16 @@ namespace cn_xc.SaveProtectSimple
 		{
 			Log = Logger;
 
-			PreventSaveDelete = Config.Bind("General", "PreventSaveDelete", true, "死亡时不删除存档。");
-			AllowDelete = Config.Bind("General", "AllowDelete", false, "存档清理模式。");
-			RemoveSaveLimit = Config.Bind("SaveLimit", "RemoveSaveLimit", true, "移除存档数量上限。");
-			MaxSaveSlots = Config.Bind("SaveLimit", "MaxSaveSlots", 999, "最大存档数量。");
-			EnableAutoBackup = Config.Bind("AutoBackup", "EnableAutoBackup", true, "退出房间时自动创建存档。");
+			PreventSaveDelete = Config.Bind("常规", "死亡时保留存档", true,
+				"开启后，死亡时不会删除当前存档（防删档）。");
+			AllowDelete = Config.Bind("常规", "允许手动删除存档", false,
+				"关闭时，游戏内的存档删除操作会被拦截；需要清理存档时再打开。");
+			RemoveSaveLimit = Config.Bind("存档数量", "解除存档数量上限", true,
+				"开启后不再受原版存档槽位数量限制。");
+			MaxSaveSlots = Config.Bind("存档数量", "最大存档数量", 999,
+				new ConfigDescription("解除上限后允许保存的最大槽位数。", new AcceptableValueRange<int>(1, 9999)));
+			EnableAutoBackup = Config.Bind("自动备份", "退出房间时自动备份", true,
+				"从房间返回主菜单时自动复制一份当前存档作为备份。");
 
 			var t1 = AccessTools.Method(typeof(StatsManager), "SaveFileDelete");
 			if (t1 != null) harmony.Patch(t1, prefix: new HarmonyMethod(typeof(SaveProtectSimplePlugin), nameof(SaveFileDeletePrefix)));
